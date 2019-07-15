@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+
+	{% block extrastatic %}
+	{% endblock %}
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dataTables.min.css' %}">
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+	<title>{% block title %}Document {% endblock %}</title>
+</head>
+<body>
+<div class="container">
+
+{% block navbar %}
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="bs-docs-section clearfix">
+		    	<div class="row">
+		        	<div class="col-lg-12">
+		            	<div class="bs-component">
+		            		<nav class="navbar navbar-default">
+		                		<div class="container-fluid">
+		                  			<div class="navbar-header">
+		                    			<a class="navbar-brand" href="{% url 'index'%}">Home</a>
+		                  			</div>
+		                  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		                    		<ul class="nav navbar-nav">
+		                      			<li class="dropdown">
+		                        			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Catalogos <span class="caret"></span></a>
+				                        	<ul class="dropdown-menu" role="menu">
+				                        		<li><a href="{% url 'autoridad_listar' %}">Autoridades</a></li>
+				                        		<li><a href="{% url 'remite_listar' %}">Remitentes</a></li>
+				                        		<li><a href="{% url 'vigilante_listar' %}">Vigilantes</a></li>
+				                        		<li><a href="{% url 'grua_listar' %}">Gruas</a></li>
+				                        		<li><a href="{% url 'deposito_listar' %}">Depósitos</a></li>
+				                        		<li><a href="{% url 'oficio_listar' %}">Oficios</a></li>
+
+
+				                        	</ul>
+		                      			</li>
+			                        	<li class="dropdown">
+			                        		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Vehículo<span class="caret"></span></a>
+			                        		<ul class="dropdown-menu" role="menu">
+			                        			<li><a href="{% url 'vehiculo_listar' %}">Ingresos</a></li>
+			                        			<li><a href="{% url 'devolucion_listar' %}">Devoluciones</a></li>
+			                        		</ul>
+			                        	</li>
+		                    		</ul>
+		                    		<ul class="nav navbar-nav navbar-right">
+		                        		<!-- <li class="dropdown"><a href="http://www2.repuve.gob.mx:8080/ciudadania/" onclick="pageTracker._link(this.href); return false;">Repuve</a>
+		                        		</li>
+		                        	    -->
+		                        		<li class="dropdown">
+		                        			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Opciones<span class="caret"></span></a>
+		                        			<ul class="dropdown-menu" role="menu">
+		                          				<li><a href="{% url 'logout' %}">Salir</a></li>
+		                        			</ul>
+		                      			</li>
+		                    		</ul>
+		                    	</div>
+		                	</div>
+		            	</nav>
+		        	</div>
+           		</div>
+        	</div>
+    	</div>    
+   </nav>
+{% endblock %}
+
+
+	{% block content %}
+	<h4>	Bloque de contenido		</h4>
+	{% endblock %}
+
+
+	{% block footer %}
+
+	{% endblock%}
+</div>
+	
+	
+
+	{% block extrajs %}
+	{% endblock %}

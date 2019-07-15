@@ -1,0 +1,106 @@
+{% extends "base1.html" %}
+{% block content %}
+
+    
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Gruas que trasladan vehículos</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Lista de Gruas
+            </div>
+            <div class="panel-body">
+                <div class='form-group'>
+                    <div class="row">
+                        <div class="col-lg-10">
+
+                            </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'grua_crear' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'index' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">NOMBRE</th>
+                                <th class="text-center">TIPO</th>
+                                <th class="text-center">DIRECCION</th>
+                                <th class="text-center">TELEFONO</th>
+                                <th class="text-center">ACCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for autori in gruas %}
+                                <tr>
+                                <td>{{ autori.id }}</td>
+                                <td>{{ autori.nombre_grua }}</td>
+                                {% if autori.grua_tipo == 'O' %}
+                                <td>OFICIAL</td>
+                                {% endif %}
+                                {% if autori.grua_tipo == 'P' %}
+                                <td>PARTICULAR</td>
+                                {% endif %}
+                                {% if autori.grua_tipo == 'T' %}
+                                <td>OTRO</td>
+                                {% endif %}
+                                <td>{{ autori.direccion_grua }}</td>
+                                <td>{{ autori.telefono_grua }}</td>
+                                <td class="text-center">
+                                <a class="glyphicon glyphicon-pencil" href="{% url 'grua_editar' autori.id %}"></a>
+                                <a class="glyphicon glyphicon-remove" href="{% url 'grua_eliminar' autori.id %}"></a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function()
+{
+        var table = $('#tabla').DataTable({
+                "language": {
+                        url: "/static/localizacion/es_ES.json"
+                }
+        });
+
+        $('#tabla tbody').on( 'click', 'tr', function()
+        {
+                if ($(this).hasClass('selected') )
+                {
+                        $(this).removeClass('selected');
+                }
+                else
+                {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                }
+        });
+
+});
+</script>
+{% endblock js %}

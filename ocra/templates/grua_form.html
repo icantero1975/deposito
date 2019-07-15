@@ -1,0 +1,73 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Gruas que trasladan los vehículos</h1>
+    </div>
+</div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+					<div class="panel-heading">
+                		Agregar/Editar Gruas
+            		</div>
+            <div class="panel-body">
+            	<div class="form-group">
+            		<div class="row">
+						<div class="col-lg-11">
+                            </div>
+                                <div class="col-lg-1">
+                                    <a href="{% url 'grua_listar' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+						<form method="post">
+						    {% csrf_token %}
+						    <div class="row">
+						      <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_grua.name}}">{{form.nombre_grua.label}}</label>
+										{{form.nombre_grua}}
+									</div>
+								</div>
+						       <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.grua_tipo.name}}">{{form.grua_tipo.label}}</label>
+										{{form.grua_tipo}}
+									</div>
+								</div>
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.direccion_grua.name}}">{{form.direccion_grua.label}}</label>
+										{{form.direccion_grua}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.telefono_grua.name}}">{{form.telefono_grua.label}}</label>
+										{{form.telefono_grua}}
+									</div>
+								</div>
+						    </div>
+						    <div align="center">
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">Guardar</button>
+						                <h5> Agregar/Modificar una grua responsable de traslado de vehículos </h5>
+									</div>
+								</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</div>					
+</div>	
+{% endblock %}

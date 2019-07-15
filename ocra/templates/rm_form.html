@@ -1,0 +1,81 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Remitentes Responsables</h1>
+    </div>
+</div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+					<div class="panel-heading">
+                		Agregar/Editar Policias y otras autoridades remitentes
+            		</div>
+            <div class="panel-body">
+            	<div class="form-group">
+            		<div class="row">
+						<div class="col-lg-11">
+                            </div>
+                                <div class="col-lg-1">
+                                    <a href="{% url 'remite_listar' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+						<form method="post">
+						    {% csrf_token %}
+						    <div class="row">
+						      <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_remite.name}}">{{form.nombre_remite.label}}</label>
+										{{form.nombre_remite}}
+									</div>
+								</div>
+						       <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.cargo_remite.name}}">{{form.cargo_remite.label}}</label>
+										{{form.cargo_remite}}
+									</div>
+								</div>
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.adscripcion_remite.name}}">{{form.adscripcion_remite.label}}</label>
+										{{form.adscripcion_remite}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.telefono.name}}">{{form.telefono.label}}</label>
+										{{form.telefono}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.tipo_autoridad.name}}">{{form.tipo_autoridad.label}}</label>
+										{{form.tipo_autoridad}}
+									</div>
+								</div>
+
+
+						    </div>
+						    <div align="center">
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">Guardar</button>
+						                <h5> Agregar/Modificar un remitente responsable </h5>
+									</div>
+								</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</div>					
+</div>	
+{% endblock %}

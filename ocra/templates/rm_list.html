@@ -1,0 +1,114 @@
+{% extends "base1.html" %}
+{% block content %}
+
+    
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Remitentes Responsables</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Lista de Policias, Agentes y Autoridades remitentes responsables
+            </div>
+            <div class="panel-body">
+                <div class='form-group'>
+                    <div class="row">
+                        <div class="col-lg-10">
+
+                            </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'remite_crear' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'index' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">NOMBRE</th>
+                                <th class="text-center">CARGO</th>
+                                <th class="text-center">ADSCRIPCION</th>
+                                <th class="text-center">TIPO</th>
+                                <th class="text-center">TELEFONO</th>
+                                <th class="text-center">ACCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for autori in remitente %}
+                                <tr>
+                                <td>{{ autori.id }}</td>
+                                <td>{{ autori.nombre_remite }}</td>
+                                <td>{{ autori.cargo_remite }}</td>
+                                <td>{{ autori.adscripcion_remite }}</td>
+                                {% if autori.tipo_autoridad == 'PM' %}
+                                <td>POLICIA MINISTERIAL</td>
+                                {% endif %}
+                                {% if autori.tipo_autoridad == 'PE' %}
+                                <td>POLICIA ESTATAL</td>
+                                {% endif %}
+                                {% if autori.tipo_autoridad == 'PP' %}
+                                <td>POLICIA MUNICIPAL</td>
+                                {% endif %}
+                                {% if autori.tipo_autoridad == 'PF' %}
+                                <td>POLICIA FEDERAL</td>
+                                {% endif %}
+                                {% if autori.tipo_autoridad == 'O' %}
+                                <td>OTRO</td>
+                                {% endif %}
+                                <td>{{ autori.telefono }}</td>
+                                <td class="text-center">
+                                <a class="glyphicon glyphicon-pencil" href="{% url 'remite_editar' autori.id %}"></a>
+                                <a class="glyphicon glyphicon-remove" href="{% url 'remite_eliminar' autori.id %}"></a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function()
+{
+        var table = $('#tabla').DataTable({
+                "language": {
+                        url: "/static/localizacion/es_ES.json"
+                }
+        });
+
+        $('#tabla tbody').on( 'click', 'tr', function()
+        {
+                if ($(this).hasClass('selected') )
+                {
+                        $(this).removeClass('selected');
+                }
+                else
+                {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                }
+        });
+
+});
+</script>
+{% endblock js %}

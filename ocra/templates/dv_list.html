@@ -1,0 +1,153 @@
+{% extends "base1.html" %}
+{% block content %}
+
+    
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Devolución de Vehículos</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Lista de Vehículos que han sido entregados
+            </div>
+            <div class="panel-body">
+                <div class='form-group'>
+                    <div class="row">
+                        <div class="col-lg-10">
+
+                            </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'devolucion_crear' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </div>
+                               
+                                <div class="col-lg-1">
+                                    <a href="{% url 'index' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">EXPEDIENTE</th>
+                                <th class="text-center">MARCA</th>    
+                                <th class="text-center">TIPO</th>
+                                <th class="text-center">MODELO</th>
+                                <th class="text-center">PLACAS</th>
+                                <th class="text-center">AUTORIDAD</th>
+                                <th class="text-center">OFICIO</th>
+                                <th class="text-center">FECHA OFICIO</th>
+                                <th class="text-center">FECHA ENTREGA</th>
+                                <th class="text-center">HORA</th>
+                                <th class="text-center">ENTREGA</th>
+                                <th class="text-center">PROPIETARIO</th>
+                                <th class="text-center">IDENTIFICACION</th>
+                                <th class="text-center">NUMERO</th>
+                                <th class="text-center">TELEFONO</th>
+                                <th class="text-center">CORREO</th>
+                                <th class="text-center">DIAS</th>
+                                <th class="text-center">COSTO</th>
+                                <th class="text-center">DESCUENTO</th>
+                                <th class="text-center">GRUA</th>
+                                <th class="text-center">ACCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for autori in devoluciones %}
+                                <tr>
+                                <td>{{ autori.Num_expediente}}</td>
+                                <td>{{ autori.Num_expediente.marca}}</td>
+                                <td>{{ autori.Num_expediente.tipo}}</td>
+                                <td>{{ autori.Num_expediente.modelo}}</td>
+                                <td>{{ autori.Num_expediente.placa}}</td>
+                                <td>{{ autori.nombre_aut}}</td>
+                                <td>{{ autori.num_oficio}}</td>
+                                <td>{{ autori.fecha_oficio }}</td>
+                                <td>{{ autori.fecha_entrega}}</td>
+                                <td>{{ autori.hora_entrega }}</td>
+                                <td>{{ autori.entrega }}</td>
+                                <td>{{ autori.nombre_propietario }}</td>
+
+                                {% if autori.identificacion == 'I' %}
+                                <td>INE-IFE</td>
+                                {% endif %}
+                                {% if autori.identificacion == 'C' %}
+                                <td>CEDULA</td>
+                                {% endif %}
+                                {% if autori.identificacion == 'L' %}
+                                <td>LICENCIA</td>
+                                {% endif %}
+                                {% if autori.identificacion == 'CM' %}
+                                <td>CARTILLA</td>
+                                {% endif %}
+                                {% if autori.identificacion == 'O' %}
+                                <td>OTRO</td>
+                                {% endif %}
+                                <td>{{ autori.numero_iden }}</td>
+                                <td>{{ autori.telefon_usuario }}</td>
+                                <td>{{ autori.correo }}</td>
+                                <td>{{ autori.dias }}</td>
+                                <td>{{ autori.cobro }}</td>
+                                {% if autori.descuento == 'A' %}
+                                <td>0 %</td>
+                                {% endif %}
+                                {% if autori.descuento == 'B' %}
+                                <td>50 %</td>
+                                {% endif %}
+                                {% if autori.descuento == 'C' %}
+                                <td>100 %</td>
+                                {% endif %}
+                                <td>{{ autori.cobro_grua }}</td>
+
+                                <td class="text-center">
+                                <a class="glyphicon glyphicon-pencil" href="{% url 'devolucion_editar' autori.id %}"></a>
+                                
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function()
+{
+        var table = $('#tabla').DataTable({
+                "language": {
+                        url: "/static/localizacion/es_ES.json"
+                }
+        });
+
+        $('#tabla tbody').on( 'click', 'tr', function()
+        {
+                if ($(this).hasClass('selected') )
+                {
+                        $(this).removeClass('selected');
+                }
+                else
+                {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                }
+        });
+
+});
+</script>
+{% endblock js %}

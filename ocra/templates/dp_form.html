@@ -1,0 +1,85 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Depósitos de vehículos</h1>
+    </div>
+</div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+					<div class="panel-heading">
+                		Agregar/Editar Depósitos
+            		</div>
+            <div class="panel-body">
+            	<div class="form-group">
+            		<div class="row">
+						<div class="col-lg-11">
+                            </div>
+                                <div class="col-lg-1">
+                                    <a href="{% url 'deposito_listar' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+						<form method="post">
+						    {% csrf_token %}
+						    <div class="row">
+						      <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_deposito.name}}">{{form.nombre_deposito.label}}</label>
+										{{form.nombre_deposito}}
+									</div>
+								</div>
+						       <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.direccion_deposito.name}}">{{form.direccion_deposito.label}}</label>
+										{{form.direccion_deposito}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.responsable.name}}">{{form.responsable.label}}</label>
+										{{form.responsable}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.telefono_resp.name}}">{{form.telefono_resp.label}}</label>
+										{{form.telefono_resp}}
+									</div>
+								</div>
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.fecha_funcion.name}}">{{form.fecha_funcion.label}}</label>
+										{{form.fecha_funcion}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.fecha_cierre.name}}">{{form.fecha_cierre.label}}</label>
+										{{form.fecha_cierre}}
+									</div>
+								</div>
+						    </div>
+						    <div align="center">
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">Guardar</button>
+						                <h5> Agregar/Modificar un Depósito </h5>
+									</div>
+								</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</div>					
+</div>	
+{% endblock %}

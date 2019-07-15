@@ -1,0 +1,147 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Devolución de vehículos</h1>
+    </div>
+</div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+					<div class="panel-heading">
+                		Agregar/Editar Devoluciones
+            		</div>
+            <div class="panel-body">
+            	<div class="form-group">
+            		<div class="row">
+						<div class="col-lg-11">
+                            </div>
+                                <div class="col-lg-1">
+                                    <a href="{% url 'devolucion_listar' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+						<form method="post">
+						    {% csrf_token %}
+						    <div class="row">
+						      <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.Num_expediente.name}}">{{form.Num_expediente.label}}</label>
+										{{form.Num_expediente}}
+									</div>
+								</div>
+						       <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_aut.name}}">{{form.nombre_aut.label}}</label>
+										{{form.nombre_aut}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.num_oficio.name}}">{{form.num_oficio.label}}</label>
+										{{form.num_oficio}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.fecha_oficio.name}}">{{form.fecha_oficio.label}}</label>
+										{{form.fecha_oficio}}
+									</div>
+								</div>
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.fecha_entrega.name}}">{{form.fecha_entrega.label}}</label>
+										{{form.fecha_entrega}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.hora_entrega.name}}">{{form.hora_entrega.label}}</label>
+										{{form.hora_entrega}}
+									</div>
+								</div>
+
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.entrega.name}}">{{form.entrega.label}}</label>
+										{{form.entrega}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_propietario.name}}">{{form.nombre_propietario.label}}</label>
+										{{form.nombre_propietario}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.identificacion.name}}">{{form.identificacion.label}}</label>
+										{{form.identificacion}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.numero_iden.name}}">{{form.numero_iden.label}}</label>
+										{{form.numero_iden}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.telefono_usuario.name}}">{{form.telefono_usuario.label}}</label>
+										{{form.telefono_usuario}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.correo.name}}">{{form.correo.label}}</label>
+										{{form.correo}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.dias.name}}">{{form.dias.label}}</label>
+										{{form.dias}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.cobro.name}}">{{form.cobro.label}}</label>
+										{{form.cobro}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.descuento.name}}">{{form.descuento.label}}</label>
+										{{form.descuento}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.cobro_grua.name}}">{{form.cobro_grua.label}}</label>
+										{{form.cobro_grua}}
+									</div>
+								</div>
+
+						    </div>
+						    <div align="center">
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">Guardar</button>
+						                <h5> Agregar/Modificar una Devolución </h5>
+									</div>
+								</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</div>					
+</div>	
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+
+{{ form.media }}
+    
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Depósitos de Vehículos</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Lista de Depósitos de Autos a resguardo
+            </div>
+            <div class="panel-body">
+                <div class='form-group'>
+                    <div class="row">
+                        <div class="col-lg-10">
+
+                            </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'deposito_crear' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </a>
+                                </div>
+                                
+                                <div class="col-lg-1">
+                                    <a href="{% url 'index' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">NOMBRE</th>
+                                <th class="text-center">DIRECCION</th>
+                                <th class="text-center">FECHA EN FUNCION</th>
+                                <th class="text-center">FECHA DE CIERRE</th>
+                                <th class="text-center">RESPONSABLE</th>
+                                <th class="text-center">TELEFONO</th>
+                                <th class="text-center">ACCION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for autori in depositos %}
+                                <tr>
+                                <td>{{ autori.id }}</td>
+                                <td>{{ autori.nombre_deposito }}</td>
+                                <td>{{ autori.direccion_deposito }}</td>
+                                <td>{{ autori.fecha_funcion }}</td>
+                                <td>{{ autori.fecha_cierre }}</td>
+                                <td>{{ autori.responsable }}</td>
+                                <td>{{ autori.telefono_resp }}</td>
+                                <td class="text-center">
+                                <a class="glyphicon glyphicon-pencil" href="{% url 'deposito_editar' autori.id %}"></a>
+                                <a class="glyphicon glyphicon-remove" href="{% url 'deposito_eliminar' autori.id %}"></a>
+                                </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function()
+{
+        var table = $('#tabla').DataTable({
+                "language": {
+                        url: "/static/localizacion/es_ES.json"
+                }
+        });
+
+        $('#tabla tbody').on( 'click', 'tr', function()
+        {
+                if ($(this).hasClass('selected') )
+                {
+                        $(this).removeClass('selected');
+                }
+                else
+                {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                }
+        });
+
+});
+</script>
+{% endblock js %}

@@ -1,0 +1,98 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Oficios de Ingreso de Vehículos</h1>
+    </div>
+</div>
+	
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-info">
+					<div class="panel-heading">
+                		Agregar/Editar Oficios
+            		</div>
+            <div class="panel-body">
+            	<div class="form-group">
+            		<div class="row">
+						<div class="col-lg-11">
+                            </div>
+                                <div class="col-lg-1">
+                                    <a href="{% url 'oficio_listar' %}" class="btn btn-info btn-block">
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+						<form method="post">
+						    {% csrf_token %}
+						    <div class="row">
+						      <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_aut.name}}">{{form.nombre_aut.label}}</label>
+										{{form.nombre_aut}}
+									</div>
+								</div>
+						       <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.num_oficio.name}}">{{form.num_oficio.label}}</label>
+										{{form.num_oficio}}
+									</div>
+								</div>
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.fecha.name}}">{{form.fecha.label}}</label>
+										{{form.fecha}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.hora.name}}">{{form.hora.label}}</label>
+										{{form.hora}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.expediente.name}}">{{form.expediente.label}}</label>
+										{{form.expediente}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.numero_exp.name}}">{{form.numero_exp.label}}</label>
+										{{form.numero_exp}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_remite.name}}">{{form.nombre_remite.label}}</label>
+										{{form.nombre_remite}}
+									</div>
+								</div>
+								<div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<label for="{{form.nombre_vigilante.name}}">{{form.nombre_vigilante.label}}</label>
+										{{form.nombre_vigilante}}
+									</div>
+								</div>
+
+						    </div>
+						    <div align="center">
+						        <div class="col-md-8 col-md-offset-2">
+									<div class="form-group">
+										<button class="btn btn-primary" type="submit">Guardar</button>
+						                <h5> Agregar/Modificar una oficio </h5>
+									</div>
+								</div>
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>			
+		</div>			
+	</div>					
+</div>	
+{% endblock %}
